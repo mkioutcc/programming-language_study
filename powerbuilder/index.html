@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PowerBuilder 初學者指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img class="h-8 w-auto" src="assets/pb-logo.svg" alt="PowerBuilder Logo">
+                    </div>
+                    <div class="ml-4 text-xl font-semibold">PowerBuilder 初學者指南</div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#introduction" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">簡介</a>
+                    <a href="#environment" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">開發環境</a>
+                    <a href="#first-app" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">第一個應用程式</a>
+                    <a href="#datawindow" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">DataWindow</a>
+                    <a href="#syntax" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">語法基礎</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" id="open-icon"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" id="close-icon" class="hidden"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#introduction" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">簡介</a>
+                <a href="#environment" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">開發環境</a>
+                <a href="#first-app" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">第一個應用程式</a>
+                <a href="#datawindow" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">DataWindow</a>
+                <a href="#syntax" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100">語法基礎</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Hero Section -->
+        <section class="mb-16">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl font-bold tracking-tight mb-4">PowerBuilder 漸進式學習指南</h1>
+                    <p class="text-lg text-gray-600 mb-6">從零開始學習 PowerBuilder，掌握企業級應用程式開發技術</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button id="get-started-btn" class="px-6 py-2 bg-black text-white font-medium rounded-md hover:bg-gray-800 transition-all">
+                            開始學習
+                        </button>
+                        <a href="#modules" class="px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 transition-all">
+                            瀏覽課程
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="assets/pb-logo.svg" alt="PowerBuilder" class="w-full max-w-md mx-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">PowerBuilder 簡介</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-2/3">
+                    <p class="mb-4">PowerBuilder 是一個快速應用程式開發 (Rapid Application Development, RAD) 工具，專為開發企業級資料庫應用程式而設計。自從1991年推出以來，它已成為開發資料庫前端應用程式的重要工具。</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">PowerBuilder 的特點</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>強大的圖形化開發介面，降低開發難度</li>
+                            <li>獨特的 DataWindow 技術，簡化資料庫操作</li>
+                            <li>支援物件導向程式設計，提高代碼可重用性</li>
+                            <li>低程式碼開發，提高生產力</li>
+                            <li>廣泛應用於企業管理系統、金融系統、報表系統等</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">適合的學習對象</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>無程式開發經驗但希望進入開發領域的新手</li>
+                            <li>有其他程式語言經驗，希望學習資料庫應用程式開發的開發者</li>
+                            <li>需要維護或開發 PowerBuilder 應用系統的 IT 人員</li>
+                            <li>希望了解 Client/Server 架構應用程式開發的學習者</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/3 flex items-center justify-center">
+                    <div class="bg-gray-50 rounded-lg p-6 w-full">
+                        <h3 class="text-lg font-semibold mb-3">PowerBuilder 核心概念</h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">物件導向程式設計</div>
+                                <div class="text-sm text-gray-600">封裝、繼承和多型等物件導向特性</div>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">事件驅動程式設計</div>
+                                <div class="text-sm text-gray-600">應用程式的行為由使用者互動觸發</div>
+                            </div>
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">DataWindow 技術</div>
+                                <div class="text-sm text-gray-600">PowerBuilder 獨特的資料處理元件</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Environment Section -->
+        <section id="environment" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">PowerBuilder 開發環境</h2>
+            <div class="flex flex-col md:flex-row items-start gap-8">
+                <div class="md:w-1/2">
+                    <p class="mb-4">PowerBuilder 提供了一個完整的整合開發環境 (IDE)，讓開發者能夠有效率地設計、編碼和測試應用程式。理解這個環境是學習 PowerBuilder 的第一步。</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-2">IDE 主要元件</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><span class="font-medium">功能表列 (Menu Bar)：</span>提供各種功能和操作選項</li>
+                            <li><span class="font-medium">工具列 (Toolbars)：</span>包含常用功能的快捷按鈕</li>
+                            <li class="ml-6">- PowerBar：用於打開 PowerBuilder 的各種畫板</li>
+                            <li class="ml-6">- PainterBar：提供當前畫板常用操作的圖標按鈕</li>
+                            <li class="ml-6">- StyleBar：用於調整文字的字體、字號等屬性</li>
+                            <li><span class="font-medium">系統樹 (System Tree)：</span>顯示應用程式的物件階層結構</li>
+                            <li><span class="font-medium">畫板區 (Painter Area)：</span>設計和編輯物件的工作區</li>
+                            <li><span class="font-medium">輸出視窗 (Output Window)：</span>顯示編譯訊息和錯誤資訊</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold mb-2">常用畫板 (Painters)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="p-3 bg-gray-50 rounded">
+                                <div class="font-medium">應用畫板 (Application)</div>
+                                <div class="text-sm text-gray-600">設定應用程式屬性</div>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded">
+                                <div class="font-medium">窗口畫板 (Window)</div>
+                                <div class="text-sm text-gray-600">設計使用者介面視窗</div>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded">
+                                <div class="font-medium">數據窗口畫板 (DataWindow)</div>
+                                <div class="text-sm text-gray-600">建立資料顯示和編輯元件</div>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded">
+                                <div class="font-medium">函數畫板 (Function)</div>
+                                <div class="text-sm text-gray-600">建立全局函數</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="assets/environment.svg" alt="PowerBuilder IDE" class="w-full rounded-lg shadow-md">
+                    <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">環境設定步驟</h4>
+                        <ol class="list-decimal pl-6 space-y-2">
+                            <li>下載並安裝 PowerBuilder 開發工具</li>
+                            <li>設定資料庫連線參數
+                                <div class="mt-2 bg-gray-100 p-3 rounded overflow-auto">
+                                    <code class="font-geist-mono text-sm">
+                                        SQLCA.DBMS = "SNC SQL Native Client(OLE DB)";<br>
+                                        SQLCA.ServerName = "YOUR_SERVER_NAME";<br>
+                                        SQLCA.Database = "YOUR_DATABASE_NAME";<br>
+                                        SQLCA.UserID = "YOUR_USER_ID";<br>
+                                        SQLCA.Password = "YOUR_PASSWORD";<br>
+                                        CONNECT USING SQLCA;
+                                    </code>
+                                </div>
+                            </li>
+                            <li>設定工作目錄和應用程式庫 (PBL)</li>
+                            <li>自訂介面偏好設定</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- First Application Section -->
+        <section id="first-app" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">您的第一個 PowerBuilder 應用程式</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <p class="mb-4">讓我們一起建立一個簡單的 "Hello, PowerBuilder!" 應用程式，這將幫助您了解 PowerBuilder 開發的基本流程。</p>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">步驟 1：建立新的 Application 物件</div>
+                        <div class="p-4">
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>在 PowerBuilder IDE 中，選擇 "File" → "New..." 選單</li>
+                                <li>選擇 "Application" 物件類型</li>
+                                <li>設定應用程式名稱為 "HelloApp"</li>
+                                <li>點擊 "Save" 儲存應用程式</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden mt-4">
+                        <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">步驟 2：建立新的 Window 物件</div>
+                        <div class="p-4">
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>選擇 "File" → "New..." 選單</li>
+                                <li>選擇 "Window" 物件類型</li>
+                                <li>將視窗的標題屬性設為 "我的第一個 PowerBuilder 應用程式"</li>
+                                <li>從工具箱中拖曳一個 Button 控制項到視窗上</li>
+                                <li>將按鈕的文字屬性設為 "點擊我"</li>
+                                <li>將視窗命名為 "w_hello" 並儲存</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden mt-4">
+                        <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">步驟 3：編寫按鈕點擊事件</div>
+                        <div class="p-4">
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>雙擊按鈕控制項，開啟 Script 編輯器</li>
+                                <li>在 Clicked 事件中輸入以下程式碼：</li>
+                            </ol>
+                            <div class="mt-2 bg-gray-100 p-3 rounded overflow-auto">
+                                <code class="font-geist-mono text-sm">
+                                    MessageBox("Hello", "Hello, PowerBuilder!")
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden mt-4">
+                        <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">步驟 4：設定應用程式啟動視窗</div>
+                        <div class="p-4">
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>開啟應用程式物件的 Script 編輯器</li>
+                                <li>在 Open 事件中輸入以下程式碼：</li>
+                            </ol>
+                            <div class="mt-2 bg-gray-100 p-3 rounded overflow-auto">
+                                <code class="font-geist-mono text-sm">
+                                    Open(w_hello)
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden mt-4">
+                        <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">步驟 5：執行應用程式</div>
+                        <div class="p-4">
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>按下 F5 鍵或點擊工具列中的 "Run" 按鈕</li>
+                                <li>應用程式將啟動並顯示您設計的視窗</li>
+                                <li>點擊按鈕，將顯示 "Hello, PowerBuilder!" 訊息框</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="assets/hello.svg" alt="Hello PowerBuilder Application" class="w-full rounded-lg shadow-md mb-6">
+                    
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-3">理解應用程式結構</h3>
+                        <p class="mb-4">在 PowerBuilder 中，應用程式由多個物件組成，形成階層結構：</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">1. Application 物件</h4>
+                            <ul class="list-disc pl-6 space-y-1">
+                                <li>應用程式的入口點</li>
+                                <li>控制應用程式的生命週期</li>
+                                <li>包含全域設定和資源</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">2. Window 物件</h4>
+                            <ul class="list-disc pl-6 space-y-1">
+                                <li>使用者介面的基本單位</li>
+                                <li>包含各種控制項和視覺元素</li>
+                                <li>處理使用者互動和顯示邏輯</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-2">3. 控制項 (Controls)</h4>
+                            <ul class="list-disc pl-6 space-y-1">
+                                <li>按鈕 (Button)、文字框 (EditMask)、標籤 (StaticText) 等</li>
+                                <li>每個控制項都有自己的屬性和事件</li>
+                                <li>通過事件處理程式回應使用者互動</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-white rounded border border-gray-200">
+                            <h4 class="font-medium mb-2">重要概念: 事件驅動程式設計</h4>
+                            <p>在上面的例子中，我們可以看到事件驅動程式設計的工作方式：</p>
+                            <ol class="list-decimal pl-6 mt-2 space-y-1">
+                                <li>使用者點擊按鈕</li>
+                                <li>這觸發了按鈕的 Clicked 事件</li>
+                                <li>PowerBuilder 執行我們為該事件編寫的代碼</li>
+                                <li>代碼顯示訊息框</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DataWindow Section -->
+        <section id="datawindow" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">DataWindow 元件介紹</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <p class="mb-4">DataWindow 是 PowerBuilder 最強大、最具特色的元件，它簡化了與資料庫的互動，並提供了豐富的資料展示和編輯功能。</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3">DataWindow 的功能與優勢</h3>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><span class="font-medium">簡化資料存取：</span>無需寫複雜的 SQL 語句即可檢索和操作資料</li>
+                            <li><span class="font-medium">彈性的資料呈現：</span>支援多種顯示格式，包括表格、表單、圖表等</li>
+                            <li><span class="font-medium">內建資料驗證：</span>提供客戶端資料驗證機制，確保資料正確性</li>
+                            <li><span class="font-medium">自動資料緩存：</span>在本地緩存資料，減少與資料庫的交互</li>
+                            <li><span class="font-medium">增強的報表功能：</span>可以輕鬆產生專業質量的報表</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">建立 DataWindow 物件的步驟</div>
+                        <div class="p-4">
+                            <ol class="list-decimal pl-6 space-y-2">
+                                <li>選擇 "File" → "New..." 選單</li>
+                                <li>選擇 "DataWindow" 物件類型</li>
+                                <li>選擇資料來源類型（例如 "SQL Select"）</li>
+                                <li>編寫 SQL 查詢或使用查詢設計器</li>
+                                <li>選擇顯示風格（例如 "Tabular", "Freeform", "Grid" 等）</li>
+                                <li>自訂外觀和行為</li>
+                                <li>命名並儲存 DataWindow 物件</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold mb-3">在視窗中使用 DataWindow</h3>
+                        <ol class="list-decimal pl-6 space-y-2">
+                            <li>在視窗設計器中，從工具箱拖曳 DataWindow 控制項到視窗上</li>
+                            <li>設定控制項的 DataObject 屬性為您剛建立的 DataWindow 物件</li>
+                            <li>編寫程式碼連接資料庫並檢索資料：</li>
+                        </ol>
+                        <div class="mt-2 bg-gray-100 p-3 rounded overflow-auto">
+                            <code class="font-geist-mono text-sm">
+                                // 在視窗的 Open 事件中<br>
+                                dw_1.SetTransObject(SQLCA) // 設定交易物件<br>
+                                dw_1.Retrieve() // 檢索資料
+                            </code>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="assets/datawindow.svg" alt="DataWindow" class="w-full rounded-lg shadow-md mb-6">
+                    
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-3">DataWindow 的常用操作</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">資料檢索 (Retrieve)</div>
+                                <div class="text-sm text-gray-600 mb-2">從資料庫載入資料到 DataWindow 中</div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <code class="font-geist-mono text-xs">
+                                        dw_1.Retrieve(param1, param2) // 帶參數的檢索
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">資料更新 (Update)</div>
+                                <div class="text-sm text-gray-600 mb-2">將變更儲存回資料庫</div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <code class="font-geist-mono text-xs">
+                                        IF dw_1.Update() = 1 THEN<br>
+                                        &nbsp;&nbsp;COMMIT USING SQLCA;<br>
+                                        ELSE<br>
+                                        &nbsp;&nbsp;ROLLBACK USING SQLCA;<br>
+                                        END IF
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">資料篩選 (Filter)</div>
+                                <div class="text-sm text-gray-600 mb-2">只顯示符合條件的資料</div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <code class="font-geist-mono text-xs">
+                                        dw_1.SetFilter("salary > 50000")<br>
+                                        dw_1.Filter()
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div class="p-3 bg-white rounded border border-gray-200">
+                                <div class="font-medium">資料排序 (Sort)</div>
+                                <div class="text-sm text-gray-600 mb-2">根據特定欄位排序資料</div>
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <code class="font-geist-mono text-xs">
+                                        dw_1.SetSort("last_name A, first_name A")<br>
+                                        dw_1.Sort()
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-white rounded border border-gray-200">
+                            <h4 class="font-medium mb-2">DataWindow 事件處理</h4>
+                            <p class="text-sm mb-3">DataWindow 提供多種事件讓您可以響應使用者互動和資料變更：</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li><span class="font-medium">ItemChanged：</span>當使用者修改資料時觸發</li>
+                                <li><span class="font-medium">RowFocusChanged：</span>當焦點移動到不同行時觸發</li>
+                                <li><span class="font-medium">Clicked：</span>當使用者點擊 DataWindow 時觸發</li>
+                                <li><span class="font-medium">ButtonClicked：</span>當點擊 DataWindow 中的按鈕時觸發</li>
+                                <li><span class="font-medium">RetrieveStart/End：</span>資料檢索開始/結束時觸發</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syntax Section -->
+        <section id="syntax" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">PowerScript 語法基礎</h2>
+            <p class="mb-6">PowerScript 是 PowerBuilder 的程式語言，用於實現應用程式的業務邏輯和互動功能。掌握 PowerScript 的基本語法是開發 PowerBuilder 應用程式的關鍵。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">變數宣告與資料類型</div>
+                    <div class="p-4">
+                        <p class="mb-3">PowerScript 支援多種資料類型，在使用變數前必須先宣告：</p>
+                        <div class="bg-gray-100 p-3 rounded overflow-auto mb-3">
+                            <code class="font-geist-mono text-sm">
+                                // 基本資料類型<br>
+                                Integer li_count = 0         // 整數<br>
+                                Long ll_id = 123456          // 長整數<br>
+                                String ls_name = "John"      // 字串<br>
+                                Boolean lb_flag = True       // 布林值<br>
+                                Date ld_today = Today()      // 日期<br>
+                                Time lt_now = Now()          // 時間<br>
+                                DateTime ldt_current         // 日期時間<br>
+                                Decimal ldec_price = 19.99   // 小數<br>
+                                <br>
+                                // 變數作用域前綴<br>
+                                // l_ 區域變數 (Local)<br>
+                                // i_ 實例變數 (Instance)<br>
+                                // g_ 全域變數 (Global)
+                            </code>
+                        </div>
+                        <p>PowerScript 變數命名慣例使用前綴來表示資料類型和作用域，這是良好的程式設計實踐。</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">運算符與表達式</div>
+                    <div class="p-4">
+                        <p class="mb-3">PowerScript 支援常見的運算符：</p>
+                        <div class="space-y-2 mb-3">
+                            <div>
+                                <span class="font-medium">算術運算符：</span>
+                                <code class="font-geist-mono bg-gray-100 px-1">+</code> (加),
+                                <code class="font-geist-mono bg-gray-100 px-1">-</code> (減),
+                                <code class="font-geist-mono bg-gray-100 px-1">*</code> (乘),
+                                <code class="font-geist-mono bg-gray-100 px-1">/</code> (除),
+                                <code class="font-geist-mono bg-gray-100 px-1">^</code> (次方)
+                            </div>
+                            <div>
+                                <span class="font-medium">比較運算符：</span>
+                                <code class="font-geist-mono bg-gray-100 px-1">=</code> (等於),
+                                <code class="font-geist-mono bg-gray-100 px-1"><></code> (不等於),
+                                <code class="font-geist-mono bg-gray-100 px-1">></code> (大於),
+                                <code class="font-geist-mono bg-gray-100 px-1"><</code> (小於)
+                            </div>
+                            <div>
+                                <span class="font-medium">邏輯運算符：</span>
+                                <code class="font-geist-mono bg-gray-100 px-1">AND</code>,
+                                <code class="font-geist-mono bg-gray-100 px-1">OR</code>,
+                                <code class="font-geist-mono bg-gray-100 px-1">NOT</code>
+                            </div>
+                        </div>
+                        <div class="bg-gray-100 p-3 rounded overflow-auto">
+                            <code class="font-geist-mono text-sm">
+                                // 運算符示例<br>
+                                Integer li_a = 10, li_b = 20<br>
+                                Integer li_sum = li_a + li_b      // 加法<br>
+                                String ls_fname = "John"<br>
+                                String ls_lname = "Doe"<br>
+                                String ls_full = ls_fname + " " + ls_lname // 字串連接<br>
+                                Boolean lb_valid = li_a > 0 AND li_b < 100  // 邏輯運算
+                            </code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">控制結構</div>
+                    <div class="p-4">
+                        <p class="mb-3">PowerScript 提供多種控制結構來實現程式邏輯：</p>
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="font-medium mb-1">IF 條件判斷</h4>
+                                <div class="bg-gray-100 p-2 rounded overflow-auto">
+                                    <code class="font-geist-mono text-xs">
+                                        IF condition THEN<br>
+                                        &nbsp;&nbsp;// 程式碼<br>
+                                        ELSEIF another_condition THEN<br>
+                                        &nbsp;&nbsp;// 程式碼<br>
+                                        ELSE<br>
+                                        &nbsp;&nbsp;// 程式碼<br>
+                                        END IF
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium mb-1">CHOOSE CASE 分支</h4>
+                                <div class="bg-gray-100 p-2 rounded overflow-auto">
+                                    <code class="font-geist-mono text-xs">
+                                        CHOOSE CASE variable<br>
+                                        &nbsp;&nbsp;CASE value1<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;// 程式碼<br>
+                                        &nbsp;&nbsp;CASE value2, value3<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;// 程式碼<br>
+                                        &nbsp;&nbsp;CASE ELSE<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;// 程式碼<br>
+                                        END CHOOSE
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium mb-1">FOR 迴圈</h4>
+                                <div class="bg-gray-100 p-2 rounded overflow-auto">
+                                    <code class="font-geist-mono text-xs">
+                                        FOR i = 1 TO 10<br>
+                                        &nbsp;&nbsp;// 程式碼<br>
+                                        NEXT
+                                    </code>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium mb-1">DO WHILE/UNTIL 迴圈</h4>
+                                <div class="bg-gray-100 p-2 rounded overflow-auto">
+                                    <code class="font-geist-mono text-xs">
+                                        DO WHILE condition<br>
+                                        &nbsp;&nbsp;// 程式碼<br>
+                                        LOOP<br>
+                                        <br>
+                                        DO UNTIL condition<br>
+                                        &nbsp;&nbsp;// 程式碼<br>
+                                        LOOP
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <div class="px-4 py-2 bg-gray-50 border-b border-gray-200 font-medium">函數與事件</div>
+                    <div class="p-4">
+                        <p class="mb-3">PowerBuilder 中的函數和事件是實現程式邏輯的關鍵：</p>
+                        
+                        <div class="mb-3">
+                            <h4 class="font-medium mb-1">自訂函數</h4>
+                            <div class="bg-gray-100 p-2 rounded overflow-auto">
+                                <code class="font-geist-mono text-xs">
+                                    // 函數定義<br>
+                                    FUNCTION ReturnType function_name (ArgumentType arg1, ArgumentType arg2)<br>
+                                    &nbsp;&nbsp;// 程式碼<br>
+                                    &nbsp;&nbsp;RETURN value<br>
+                                    END FUNCTION<br>
+                                    <br>
+                                    // 函數呼叫<br>
+                                    result = function_name(param1, param2)
+                                </code>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-1">事件處理</h4>
+                            <div class="bg-gray-100 p-2 rounded overflow-auto">
+                                <code class="font-geist-mono text-xs">
+                                    // 事件處理程式<br>
+                                    // 在控制項的 Clicked 事件中<br>
+                                    MessageBox("通知", "按鈕被點擊了!")<br>
+                                    <br>
+                                    // 觸發事件<br>
+                                    cb_button.TriggerEvent(Clicked!)<br>
+                                    <br>
+                                    // 延遲觸發事件<br>
+                                    cb_button.PostEvent(Clicked!)
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">PowerScript 語法特色</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-medium mb-2">物件導向程式設計</h4>
+                            <p class="text-sm mb-3">PowerScript 支援物件導向程式設計的核心特性：</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li><span class="font-medium">封裝：</span>將資料和行為包裝在物件中</li>
+                                <li><span class="font-medium">繼承：</span>透過繼承共享和擴展功能</li>
+                                <li><span class="font-medium">多型：</span>同一操作在不同物件上有不同行為</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-2">代表詞的使用</h4>
+                            <p class="text-sm mb-3">PowerScript 提供特殊代表詞來參考物件：</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li><span class="font-medium">This：</span>代表當前物件</li>
+                                <li><span class="font-medium">Parent：</span>代表控制項所在的視窗</li>
+                                <li><span class="font-medium">Super：</span>用於存取父類別的功能</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-2">命名規範</h4>
+                            <p class="text-sm mb-3">PowerBuilder 開發中常用的命名規範：</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li>變數名稱使用前綴表示資料類型和作用域</li>
+                                <li>控制項名稱使用前綴表示類型（如 cb_button 表示 CommandButton）</li>
+                                <li>視窗名稱通常以 w_ 開頭</li>
+                                <li>DataWindow 物件名稱通常以 d_ 開頭</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium mb-2">注意事項</h4>
+                            <p class="text-sm mb-3">編寫 PowerScript 時的一些重要注意事項：</p>
+                            <ul class="list-disc pl-6 space-y-1 text-sm">
+                                <li>PowerScript 不區分大小寫</li>
+                                <li>使用 `//` 添加單行注釋，使用 `/* */` 添加多行注釋</li>
+                                <li>使用 `&` 符號在程式碼行尾表示續行</li>
+                                <li>使用 `IsNull()` 函數檢查變數是否為空</li>
+                                <li>使用 `TRY-CATCH` 區塊處理異常</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Path -->
+        <section id="modules" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">PowerBuilder 學習路徑</h2>
+            <p class="mb-6">下面是一個系統性的 PowerBuilder 學習路徑，幫助您從初學者逐步成長為熟練的 PowerBuilder 開發者。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="h-2 bg-gray-700"></div>
+                    <div class="p-5">
+                        <div class="text-gray-500 mb-1">第一階段</div>
+                        <h3 class="font-bold text-lg mb-3">PowerBuilder 基礎</h3>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>PowerBuilder 簡介與安裝</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>開發環境與基本操作</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>PowerScript 語法基礎</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>建立第一個應用程式</span>
+                            </li>
+                        </ul>
+                        <div class="text-sm text-gray-500">時間：2-3 週</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="h-2 bg-gray-700"></div>
+                    <div class="p-5">
+                        <div class="text-gray-500 mb-1">第二階段</div>
+                        <h3 class="font-bold text-lg mb-3">資料庫操作與 DataWindow</h3>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>資料庫連線設定</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>基本 SQL 操作</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>DataWindow 基礎</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>DataWindow 的資料操作</span>
+                            </li>
+                        </ul>
+                        <div class="text-sm text-gray-500">時間：3-4 週</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="h-2 bg-gray-700"></div>
+                    <div class="p-5">
+                        <div class="text-gray-500 mb-1">第三階段</div>
+                        <h3 class="font-bold text-lg mb-3">進階功能與實踐專案</h3>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>物件導向程式設計應用</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>報表設計與列印</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>應用程式部署</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>實務專案開發</span>
+                            </li>
+                        </ul>
+                        <div class="text-sm text-gray-500">時間：4-6 週</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex justify-center">
+                <a href="#introduction" class="px-6 py-3 bg-black text-white font-medium rounded-md hover:bg-gray-800 transition-all">
+                    開始我的學習之旅
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">常見問題</h2>
+            
+            <div class="space-y-4" id="faq-container">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-all" data-target="faq-1">
+                        <span class="font-medium">什麼是 PowerBuilder，它適合用於什麼類型的應用程式開發？</span>
+                        <svg class="h-5 w-5 text-gray-500 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-1" class="faq-answer p-4 bg-gray-50 border-t border-gray-200 hidden">
+                        <p>PowerBuilder 是一個快速應用程式開發 (RAD) 工具，特別適合開發資料庫前端應用程式。它最適合用於企業內部管理系統、金融系統、庫存管理、客戶關係管理 (CRM) 系統等需要強大資料處理能力的應用程式。PowerBuilder 的 DataWindow 技術使其在資料庫操作方面特別高效。</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-all" data-target="faq-2">
+                        <span class="font-medium">學習 PowerBuilder 需要什麼前置知識？</span>
+                        <svg class="h-5 w-5 text-gray-500 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-2" class="faq-answer p-4 bg-gray-50 border-t border-gray-200 hidden">
+                        <p>學習 PowerBuilder 不需要太多前置知識，但具備以下背景會更有幫助：</p>
+                        <ul class="list-disc pl-6 mt-2 space-y-1">
+                            <li>基本的程式設計概念（變數、函數、控制結構等）</li>
+                            <li>SQL 和關聯式資料庫的基本知識</li>
+                            <li>物件導向程式設計的基本概念</li>
+                            <li>圖形化使用者介面 (GUI) 的基本理解</li>
+                        </ul>
+                        <p class="mt-2">但即使您是完全的初學者，只要循序漸進地學習，也能掌握 PowerBuilder 開發。</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-all" data-target="faq-3">
+                        <span class="font-medium">PowerBuilder 與其他程式語言相比有什麼優勢？</span>
+                        <svg class="h-5 w-5 text-gray-500 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-3" class="faq-answer p-4 bg-gray-50 border-t border-gray-200 hidden">
+                        <p>PowerBuilder 相比其他程式語言有以下優勢：</p>
+                        <ul class="list-disc pl-6 mt-2 space-y-1">
+                            <li><span class="font-medium">DataWindow 技術：</span>提供了強大且靈活的資料庫存取和顯示功能</li>
+                            <li><span class="font-medium">快速開發：</span>低程式碼的方式能快速建立功能性強大的應用程式</li>
+                            <li><span class="font-medium">易於學習：</span>相較於其他程式語言，PowerBuilder 的學習曲線較平緩</li>
+                            <li><span class="font-medium">整合性：</span>提供完整的開發環境，從設計到部署一應俱全</li>
+                            <li><span class="font-medium">成熟度：</span>經過多年發展，擁有穩定性高的技術和豐富的程式庫</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-all" data-target="faq-4">
+                        <span class="font-medium">PowerBuilder 還有市場嗎？值得學習嗎？</span>
+                        <svg class="h-5 w-5 text-gray-500 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-4" class="faq-answer p-4 bg-gray-50 border-t border-gray-200 hidden">
+                        <p>雖然 PowerBuilder 不是最新的技術，但它仍然在全球多個行業中廣泛使用，特別是在金融、保險、政府機構和大型企業中。許多使用 PowerBuilder 開發的核心業務系統仍在運行，並需要維護和更新。</p>
+                        <p class="mt-2">學習 PowerBuilder 的價值主要體現在：</p>
+                        <ul class="list-disc pl-6 mt-2 space-y-1">
+                            <li>維護現有系統的工作機會</li>
+                            <li>對資料庫應用程式開發原理的深入理解</li>
+                            <li>特定行業的專業知識積累</li>
+                            <li>較少競爭的特定技能市場</li>
+                        </ul>
+                        <p class="mt-2">此外，PowerBuilder 仍在不斷更新，新版本支援 .NET 和 Web 開發，顯示了該技術的延續性。</p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-question w-full flex justify-between items-center p-4 bg-white hover:bg-gray-50 transition-all" data-target="faq-5">
+                        <span class="font-medium">如何取得 PowerBuilder 的開發環境？有免費版本嗎？</span>
+                        <svg class="h-5 w-5 text-gray-500 transform transition-transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="faq-5" class="faq-answer p-4 bg-gray-50 border-t border-gray-200 hidden">
+                        <p>PowerBuilder 是一款商業軟體，由 Appeon 公司開發和銷售。您可以透過以下途徑取得：</p>
+                        <ul class="list-disc pl-6 mt-2 space-y-1">
+                            <li>從 Appeon 官方網站購買授權</li>
+                            <li>申請試用版本（通常有 30 天或 60 天的試用期）</li>
+                            <li>使用學術版本（如果您是學生或教育機構）</li>
+                            <li>通過您所在組織的現有授權</li>
+                        </ul>
+                        <p class="mt-2">雖然 PowerBuilder 本身沒有永久免費版本，但試用版足夠初學者學習基本概念和技術。此外，一些較舊版本的 PowerBuilder 可能通過特定渠道提供學習使用。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-50 border-t border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">© 2023 PowerBuilder 初學者指南. 保留所有權利.</p>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    Built with <a href="https://flowith.net" target="_blank" class="text-gray-700 hover:underline">Flowith Oracle</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener("wheel", (e)=> {
+          const isPinching = e.ctrlKey
+          if(isPinching) e.preventDefault()
+        }, { passive: false })
+    </script>
+</body>
+</html>
