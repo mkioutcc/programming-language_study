@@ -1,0 +1,90 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" rx="8" fill="#F8F8F8"/>
+  
+  <!-- Code Editor Header -->
+  <rect x="0" y="0" width="600" height="40" fill="#333333" rx="8 8 0 0"/>
+  <circle cx="20" cy="20" r="6" fill="#FF6B6B"/>
+  <circle cx="40" cy="20" r="6" fill="#FFD93D"/>
+  <circle cx="60" cy="20" r="6" fill="#6BCB77"/>
+  <text x="300" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">PowerScript Editor</text>
+  
+  <!-- Tab Bar -->
+  <rect x="0" y="40" width="600" height="30" fill="#EEEEEE"/>
+  <rect x="10" y="40" width="120" height="30" fill="#FFFFFF"/>
+  <text x="70" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">w_main.srw</text>
+  <rect x="130" y="40" width="120" height="30" fill="#DDDDDD"/>
+  <text x="190" y="60" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#666666">d_employee.srd</text>
+  
+  <!-- Line Numbers -->
+  <rect x="0" y="70" width="30" height="330" fill="#F0F0F0"/>
+  <text x="15" y="90" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">1</text>
+  <text x="15" y="110" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">2</text>
+  <text x="15" y="130" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">3</text>
+  <text x="15" y="150" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">4</text>
+  <text x="15" y="170" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">5</text>
+  <text x="15" y="190" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">6</text>
+  <text x="15" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">7</text>
+  <text x="15" y="230" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">8</text>
+  <text x="15" y="250" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">9</text>
+  <text x="15" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">10</text>
+  <text x="15" y="290" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">11</text>
+  <text x="15" y="310" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">12</text>
+  <text x="15" y="330" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">13</text>
+  <text x="15" y="350" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">14</text>
+  <text x="15" y="370" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#888888">15</text>
+  
+  <!-- Code Content -->
+  <rect x="30" y="70" width="570" height="330" fill="#FFFFFF"/>
+  
+  <!-- PowerScript Code -->
+  <text x="40" y="90" font-family="monospace" font-size="12" fill="#777777">// Event handler for button clicked event</text>
+  <text x="40" y="110" font-family="monospace" font-size="12" fill="#0033A0">INTEGER</text>
+  <text x="100" y="110" font-family="monospace" font-size="12" fill="#000000"> li_result</text>
+  
+  <text x="40" y="130" font-family="monospace" font-size="12" fill="#0033A0">IF</text>
+  <text x="55" y="130" font-family="monospace" font-size="12" fill="#000000"> IsNull(sle_1.text) </text>
+  <text x="180" y="130" font-family="monospace" font-size="12" fill="#0033A0">THEN</text>
+  
+  <text x="40" y="150" font-family="monospace" font-size="12" fill="#000000">    MessageBox(</text>
+  <text x="125" y="150" font-family="monospace" font-size="12" fill="#AA3939">"Warning"</text>
+  <text x="185" y="150" font-family="monospace" font-size="12" fill="#000000">, </text>
+  <text x="190" y="150" font-family="monospace" font-size="12" fill="#AA3939">"Please enter a value"</text>
+  <text x="325" y="150" font-family="monospace" font-size="12" fill="#000000">)</text>
+  
+  <text x="40" y="170" font-family="monospace" font-size="12" fill="#0033A0">    RETURN</text>
+  
+  <text x="40" y="190" font-family="monospace" font-size="12" fill="#0033A0">END IF</text>
+  
+  <text x="40" y="210" font-family="monospace" font-size="12" fill="#777777">// Connect to database and retrieve data</text>
+  
+  <text x="40" y="230" font-family="monospace" font-size="12" fill="#000000">dw_1.SetTransObject(SQLCA)</text>
+  
+  <text x="40" y="250" font-family="monospace" font-size="12" fill="#000000">li_result = dw_1.Retrieve(sle_1.text)</text>
+  
+  <text x="40" y="270" font-family="monospace" font-size="12" fill="#0033A0">IF</text>
+  <text x="55" y="270" font-family="monospace" font-size="12" fill="#000000"> li_result = 0 </text>
+  <text x="140" y="270" font-family="monospace" font-size="12" fill="#0033A0">THEN</text>
+  
+  <text x="40" y="290" font-family="monospace" font-size="12" fill="#000000">    MessageBox(</text>
+  <text x="125" y="290" font-family="monospace" font-size="12" fill="#AA3939">"Information"</text>
+  <text x="195" y="290" font-family="monospace" font-size="12" fill="#000000">, </text>
+  <text x="200" y="290" font-family="monospace" font-size="12" fill="#AA3939">"No data found"</text>
+  <text x="290" y="290" font-family="monospace" font-size="12" fill="#000000">)</text>
+  
+  <text x="40" y="310" font-family="monospace" font-size="12" fill="#0033A0">ELSEIF</text>
+  <text x="90" y="310" font-family="monospace" font-size="12" fill="#000000"> li_result = -1 </text>
+  <text x="180" y="310" font-family="monospace" font-size="12" fill="#0033A0">THEN</text>
+  
+  <text x="40" y="330" font-family="monospace" font-size="12" fill="#000000">    MessageBox(</text>
+  <text x="125" y="330" font-family="monospace" font-size="12" fill="#AA3939">"Error"</text>
+  <text x="170" y="330" font-family="monospace" font-size="12" fill="#000000">, </text>
+  <text x="175" y="330" font-family="monospace" font-size="12" fill="#AA3939">"Database error: "</text>
+  <text x="285" y="330" font-family="monospace" font-size="12" fill="#000000"> + SQLCA.SQLErrText)</text>
+  
+  <text x="40" y="350" font-family="monospace" font-size="12" fill="#0033A0">END IF</text>
+  
+  <!-- Cursor -->
+  <rect x="40" y="348" width="1" height="14" fill="#000000">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+  </rect>
+</svg>
